@@ -4,24 +4,32 @@ import java.util.List;
 
 public class UserRating {
 
-	private List<Rating> useRating;
-	
+	private String userId;
+	private List<Rating> ratings;
+
 	public UserRating() {
 
 	}
 
-	public UserRating(List<Rating> useRating) {
-		super();
-		this.useRating = useRating;
+	public UserRating(String userId, List<Rating> ratings) {
+		this.userId = userId;
+		this.ratings = ratings;
 	}
 
-	public List<Rating> getUseRating() {
-		return useRating;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUseRating(List<Rating> useRating) {
-		this.useRating = useRating;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
 
 }
