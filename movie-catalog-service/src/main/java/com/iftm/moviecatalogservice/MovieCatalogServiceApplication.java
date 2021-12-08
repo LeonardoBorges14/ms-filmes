@@ -11,14 +11,16 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 public class MovieCatalogServiceApplication {
 	
-	@Bean
+	public static void main(String[] args) {
+		SpringApplication.run(MovieCatalogServiceApplication.class, args);
+	}
+	
 	@LoadBalanced
+	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(MovieCatalogServiceApplication.class, args);
-	}
+
 
 }

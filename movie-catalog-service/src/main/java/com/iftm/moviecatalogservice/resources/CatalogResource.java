@@ -21,17 +21,15 @@ public class CatalogResource {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Autowired
-	private DiscoveryClient discoveryClient;
 
 	@RequestMapping("/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
 		
-        UserRating userRating = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/" + userId, UserRating.class);
+        UserRating userRating = restTemplate.getForObject("http://ratings-data-service/ratingsdata/user/" + userId, UserRating.class);
 
 		return userRating.getRatings().stream().map(rating -> {
 			Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
-			return new CatalogItem(movie.getName(), "Bom filme", rating.getRating());
+			return new CatalogItem(movie.getName(), movie.getDescription(), rating.getRating());
 		}).collect(Collectors.toList());
 
 	}
